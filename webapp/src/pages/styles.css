@@ -7,37 +7,42 @@ body {
     justify-content: center; /* Center the buttons horizontally */
     align-items: center; /* Align the buttons vertically */
     padding: 10px; /* Adds padding inside the container, optional based on your design */
-    max-width: 600px; /* Maximum width of the login section */
+    max-width: 500px; /* Maximum width of the login section */
     margin: 0 auto; /* Centers the section in the middle of the page */
 }
-
 #login-btn, #signup-btn {
-    margin: 0 10px; /* Adds space around the buttons */
-    /* Additional button styling (padding, font size, etc.) */
-}
-
-
-.form-group {
-    margin-bottom: 15px;
+    margin: 0 5px; /* Adds space around the buttons */
     
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.form-group {
+    margin-bottom: 15px; /* Adds space between each form group */
 }
 
-input[type="text"],
+.form-group label {
+    display: block; /* Ensures the label is on a new line */
+    margin-bottom: 5px; /* Space between label and input/select box */
+}
+
 input[type="date"],
 input[type="number"],
+input[type="text"],
+input[type="password"],
+input[type="select"],
 select {
     width: 100%;
     padding: 8px;
-    margin: 4px 0 12px 0;
-    display: inline-block;
+    margin: 5px 0;
+    display: block; /* Ensures the element takes up the full width of its container */
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding and border do not affect the total width and height */
+    -webkit-appearance: none; /* Removes default Chrome/Safari styling */
+    -moz-appearance: none; /* Removes default Firefox styling */
+    appearance: none; /* Removes default styling for other browsers */
+    background-color: white;
+    font-family: inherit; /* Ensures the font is consistent with other inputs */
+    font-size: inherit; /* Ensures the font size is consistent with other inputs */
 }
 
 button {
@@ -100,3 +105,18 @@ button:hover {
     font-size: 0.8em; /* Smaller font size for subtext */
     font-weight: normal;
 }
+
+.login-container, .signup-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.alternative-action {
+    text-align: center;
+    margin-top: 20px;
+}
+
