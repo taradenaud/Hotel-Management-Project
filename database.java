@@ -33,7 +33,7 @@ public class database {
         }
     }
 
-    public static void UpdateEmployee(String column, String input, int employee_id) {
+    public static void updateEmployee(String column, String input, int employee_id) {
         try {
             Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel+Management", "postgres", "richa123");
             Statement st = db.createStatement();
@@ -46,7 +46,7 @@ public class database {
         }
     }
 
-    public static void UpdatePosition(int role_id, String position_title, int employee_id) {
+    public static void updatePosition(int role_id, String position_title, int employee_id) {
         try {
             Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel+Management", "postgres", "richa123");
             Statement st = db.createStatement();
@@ -58,7 +58,7 @@ public class database {
         }
     }
 
-    public static void UpdateCustomer(String column, int customer_id, String input){
+    public static void updateCustomer(String column, int customer_id, String input){
         try {
             Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel+Management", "postgres", "richa123");
             Statement st = db.createStatement();
