@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Tahoma, "Trebuchet MS", sans-serif;
 }
 
 .login-section {
@@ -47,7 +47,7 @@ select {
 
 button {
     width: 100%;
-    background-color: #4b92e3;
+    background-color: #2a9d8f;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -57,7 +57,7 @@ button {
 }
 
 button:hover {
-    background-color: #1e64b4;
+    background-color: #264653;
 }
 /* MAIN PAGE CSS */
 .carousel {
@@ -114,7 +114,7 @@ button:hover {
     width: 300px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #d1dce2;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -130,24 +130,24 @@ button:hover {
     /* smt here for booking container */
     margin-top: 20px;
     padding: 15px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #b3ddd1;
+    border: 1px solid #80beaf;
     border-radius: 4px;
 }
 
 .available-rooms-container{
     margin-top: 20px;
     padding: 15px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #f5b994;
+    border: 1px solid #ee9c6c;
     border-radius: 4px;
 }
 
 .room-search-container {
     margin-top: 20px;
     padding: 15px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #bde0fe;
+    border: 1px solid #a2d2ff;
     border-radius: 4px;
 }
 
@@ -155,24 +155,24 @@ button:hover {
 .search-bookings-container{
     margin-top: 20px;
     padding: 15px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #ffc8dd;
+    border: 1px solid #ffafcc;
     border-radius: 4px;
 }
 
 .approve-booking-container{
     margin-top: 20px;
     padding: 15px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #ed7884;
+    border: 1px solid #f92a82;
     border-radius: 4px;
 }
 
 .book-room-container{
     margin-top: 20px;
     padding: 15px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #d6d5b3;
+    border: 1px solid #7eb77f;
     border-radius: 4px;
 }
 
@@ -206,8 +206,8 @@ button:hover {
 .update-position-container {
     margin-top: 20px;
     padding: 15px;
-    background-color: #f8f8f8;
-    border: 1px solid #ddd;
+    background-color: #ff97af;
+    border: 1px solid #fa6989;
     border-radius: 4px;
 
 }
