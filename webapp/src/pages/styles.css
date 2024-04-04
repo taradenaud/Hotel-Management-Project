@@ -59,7 +59,7 @@ button {
 button:hover {
     background-color: #1e64b4;
 }
-
+/* MAIN PAGE CSS */
 .carousel {
     position: relative;
     width: 100%;
@@ -106,6 +106,10 @@ button:hover {
     font-weight: normal;
 }
 
+/* MAIN PAGE CSS */
+
+/*  LOGIN/SIGNUP PAGE CSS */
+
 .login-container, .signup-container {
     width: 300px;
     margin: 50px auto;
@@ -120,3 +124,90 @@ button:hover {
     margin-top: 20px;
 }
 
+/*  LOGIN/SIGNUP PAGE CSS */
+
+.booking-container {
+    /* smt here for booking container */
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.available-rooms-container{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.room-search-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/*  EMPLOYEE PAGE CSS */
+.search-bookings-container{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.approve-booking-container{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.book-room-container{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Custom checkbox styles */
+.checkbox-group {
+    display: flex;
+    justify-content: space-between; 
+}
+
+.checkbox-group > div {
+    flex: 1; 
+    text-align: center; 
+    padding: 0 10px; 
+}
+
+
+.form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.form-group label {
+    display: block; /* Labels are on their own line */
+    margin-bottom: 5px; /* Space below the label */
+}
+
+/*  EMPLOYEE PAGE CSS */
+
+/* manager page */
+.employee-container,
+.customer-container,
+.update-position-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+
+}
