@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@ page import="webapp.src.data.database"%>
+<%@ page import="java.sql.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +24,7 @@
         </form>
         <div class="alternative-action">
             <span>Don't have an account?</span>
-            <button id="signup-btn" onclick="location.href='signup.html';">Sign Up</button> <!-- Update with your signup page link -->
+            <button id="signup-btn" onclick="location.href='signup.jsp';">Sign Up</button> <!-- Update with your signup page link -->
         </div>
     </div>
 </body>

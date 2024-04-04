@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>Hotel Booking</title>
@@ -8,8 +7,8 @@
     <h1>Welcome to Our Hotel!</h1>
 
     <div class="login-section">
-        <button id="login-btn" onclick="location.href='login.html';">Log In</button>
-        <button id="signup-btn" onclick="location.href='signup.html';">Sign Up</button>
+        <button id="login-btn" onclick="location.href='login.jsp';">Log In</button>
+        <button id="signup-btn" onclick="location.href='signup.jsp';">Sign Up</button>
     </div>
 <h2>Book Your Room</h2>
     <form>
@@ -25,7 +24,7 @@
 
         <div class="form-group">
             <label for="room-capacity">Room Capacity:</label>
-            <input type="number" id="room-capacity" name="room-capacity" min="1" required>
+            <input type="text" id="room-capacity" name="room-capacity">
         </div>
 
         <div class="form-group">

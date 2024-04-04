@@ -28,7 +28,7 @@
         </form>
         <div class="alternative-action">
             <span>Already have an account?</span>
-            <button id="login-btn" onclick="location.href='login.html';">Log In</button> <!-- Update with your login page link -->
+            <button id="login-btn" onclick="location.href='login.jsp';">Log In</button> <!-- Update with your login page link -->
         </div>
     </div>
 </body>

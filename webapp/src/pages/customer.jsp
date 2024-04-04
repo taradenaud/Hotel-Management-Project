@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label for="room-capacity">Room Capacity:</label>
-                <input type="number" id="room-capacity" name="room-capacity" min="1" required>
+                <input type="text" id="room-capacity" name="room-capacity">
             </div>
 
             <div class="form-group">
