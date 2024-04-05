@@ -1,9 +1,18 @@
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@ page import="webapp.src.data.database"%>
+<%@ page import="java.sql.*" %>
+
 <html>
 <head>
     <title>Hotel Booking</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
+    <%
+    String url = "jdbc:postgresql://localhost:5432/Hotel+Management";
+    Class.forName("org.postgresql.Driver");
+    Connection db = DriverManager.getConnection(url, "postgres", "richa123");
+    %>
     <h1>Welcome to Our Hotel!</h1>
 
     <div class="login-section">

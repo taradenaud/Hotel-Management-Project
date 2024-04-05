@@ -9,6 +9,11 @@
     <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Assuming you have a CSS file for styling -->
 </head>
 <body>
+<%
+    String url = "jdbc:postgresql://localhost:5432/Hotel+Management";
+    Class.forName("org.postgresql.Driver");
+    Connection db = DriverManager.getConnection(url, "postgres", "richa123");
+%>
     <div class="login-container">
         <h2>Login</h2>
         <form action="/login" method="post"> <!-- Update action with your login handling endpoint -->

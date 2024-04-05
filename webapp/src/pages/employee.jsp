@@ -1,3 +1,7 @@
+<%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="UTF-8"%>
+<%@ page import="webapp.src.data.database"%>
+<%@ page import="java.sql.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +9,11 @@
     <link rel="stylesheet" type="text/css" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
+<%
+    String url = "jdbc:postgresql://localhost:5432/Hotel+Management";
+    Class.forName("org.postgresql.Driver");
+    Connection db = DriverManager.getConnection(url, "postgres", "richa123");
+%>
     <h1 style="text-align: center;"> Employee Portal </h1>
     <!-- Search Bookings Container -->
     <div class="search-bookings-container">
