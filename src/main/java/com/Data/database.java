@@ -1,4 +1,4 @@
-package webapp.src.data;
+package src.main.java.com.Data;
 
 import java.sql.*;
 import java.util.ArrayList;
