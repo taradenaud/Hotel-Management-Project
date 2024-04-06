@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-ear" name="CSI2132_GRP170_PROJECT:javaEEApplication exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/CSI2132_GRP170_PROJECT_javaEEApplication_exploded</output-path>
-    <root id="root">
-      <element id="javaee-facet-resources" facet="CSI2132_GRP170_PROJECT/javaeeApplication/javaEEApplication" />
-    </root>
-  </artifact>
-</component>
