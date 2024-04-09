@@ -1,0 +1,156 @@
+CREATE TABLE HotelChain(
+chain_id SERIAL PRIMARY KEY,
+name VARCHAR,
+central_office_address VARCHAR,
+num_hotels INTEGER,
+email VARCHAR,
+phone VARCHAR
+);
+
+CREATE TABLE Hotel(
+hotel_id SERIAL PRIMARY KEY,
+chain_id INTEGER REFERENCES HotelChain(chain_id) ON DELETE CASCADE,
+name VARCHAR,
+address VARCHAR,
+num_rooms INTEGER,
+email VARCHAR,
+city VARCHAR,
+phone VARCHAR,
+category VARCHAR
+);
+
+CREATE TABLE Employee(
+employee_id SERIAL PRIMARY KEY,
+name VARCHAR,
+address VARCHAR,
+ssn_sin VARCHAR UNIQUE,
+hotel_id INTEGER REFERENCES Hotel(hotel_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Room(
+room_id SERIAL PRIMARY KEY,
+hotel_id INTEGER REFERENCES Hotel(hotel_id) ON DELETE CASCADE,
+price INTEGER CHECK (price >= 0),
+capacity VARCHAR,
+sea_view BOOLEAN,
+mountain_view BOOLEAN,
+extendable BOOLEAN,
+damages VARCHAR,
+amenities VARCHAR
+);
+
+CREATE TABLE Customer(
+name VARCHAR,
+address VARCHAR,
+ssn_sin VARCHAR UNIQUE,
+date_of_registration DATE,
+customer_id SERIAL PRIMARY KEY
+);
+
+CREATE TABLE Archive(
+archive_id INTEGER PRIMARY KEY,
+room_id INTEGER REFERENCES Room(room_id) ON DELETE CASCADE,
+hotel_id INTEGER,
+customer_id INTEGER,
+check_in_date DATE,
+check_out_date DATE,
+renting_id INTEGER,
+booking_id INTEGER
+);
+
+CREATE TABLE Booking(
+booking_id INTEGER PRIMARY KEY,
+room_id INTEGER REFERENCES Room(room_id) ON DELETE CASCADE,
+customer_id INTEGER,
+booking_date DATE,
+check_in_date DATE,
+check_out_date DATE,
+payment VARCHAR,
+approved BOOLEAN
+);
+
+CREATE TABLE Renting(
+renting_id SERIAL PRIMARY KEY,
+room_id INTEGER REFERENCES Room(room_id) ON DELETE CASCADE,
+customer_id INTEGER,
+employee_id INTEGER,
+booking_id INTEGER,
+check_in_date DATE,
+check_out_date DATE
+);
+
+CREATE TABLE Role(
+role_id INTEGER PRIMARY KEY,
+position_title VARCHAR
+);
+
+CREATE TABLE works_as(
+employee_id INTEGER REFERENCES Employee(employee_id) ON DELETE CASCADE,
+role_id INTEGER REFERENCES Role(role_id)
+);
+
+CREATE TABLE works_for(
+employee_id INTEGER REFERENCES Employee(employee_id) ON DELETE CASCADE,
+hotel_id INTEGER REFERENCES Hotel(hotel_id) ON DELETE CASCADE
+);
+
+CREATE TABLE owns(
+chain_id INTEGER REFERENCES HotelChain(chain_id) ON DELETE CASCADE,
+hotel_id INTEGER REFERENCES Hotel(hotel_id) ON DELETE CASCADE
+);
+
+CREATE TABLE rents(
+customer_id SERIAL REFERENCES Customer(customer_id) ON DELETE CASCADE,
+renting_id INTEGER REFERENCES Renting(renting_id) ON DELETE CASCADE
+);
+
+CREATE TABLE books(
+booking_id INTEGER REFERENCES Booking(booking_id) ON DELETE CASCADE,
+customer_id SERIAL REFERENCES Customer(customer_id) ON DELETE CASCADE
+);
+
+CREATE TABLE has(
+hotel_id INTEGER REFERENCES Hotel(hotel_id) ON DELETE CASCADE,
+room_id SERIAL REFERENCES Room(room_id) ON DELETE CASCADE
+);
+
+CREATE TABLE room_booking(
+booking_id INTEGER REFERENCES Booking(booking_id) ON DELETE CASCADE,
+room_id SERIAL REFERENCES Room(room_id) ON DELETE CASCADE
+);
+
+CREATE TABLE room_archive(
+archive_id INTEGER REFERENCES Archive(archive_id) ON DELETE CASCADE,
+room_id SERIAL REFERENCES Room(room_id) ON DELETE CASCADE
+);
+
+CREATE FUNCTION add_renting()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.approved THEN
+        INSERT INTO Renting (room_id, customer_id, check_in_date, check_out_date)
+        VALUES (NEW.room_id, NEW.customer_id, NEW.check_in_date, NEW.check_out_date);
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER BOOKING_APPROVED AFTER UPDATE ON Booking FOR EACH ROW EXECUTE FUNCTION ADD_RENTING();
+
+CREATE FUNCTION remove_works_for()
+RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM works_for WHERE employee_id = OLD.employee_id;
+    RETURN OLD;
+END;
+$$ Language plpgsql;
+
+CREATE trigger terminate_employee BEFORE DELETE ON Employee FOR EACH ROW EXECUTE FUNCTION remove_works_for();
+
+Create view hotel_rooms AS select hotel_id, Count(*) AS num_rooms from Room group by hotel_id;
+Create view room_by_city AS select city, SUM(num_rooms) AS rooms_in_city from Hotel group by city;
+
+CREATE INDEX employee_ssn_sin ON Employee (ssn_sin);
+CREATE INDEX hotel_phone ON Hotel (phone);
+CREATE INDEX hotel_email ON Hotel (email);
+

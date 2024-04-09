@@ -1,0 +1,213 @@
+body {
+    font-family: Tahoma, "Trebuchet MS", sans-serif;
+}
+
+.login-section {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Align the buttons vertically */
+    padding: 10px; /* Adds padding inside the container, optional based on your design */
+    max-width: 500px; /* Maximum width of the login section */
+    margin: 0 auto; /* Centers the section in the middle of the page */
+}
+#login-btn, #signup-btn {
+    margin: 0 5px; /* Adds space around the buttons */
+    
+}
+
+.form-group {
+    margin-bottom: 15px; /* Adds space between each form group */
+}
+
+.form-group label {
+    display: block; /* Ensures the label is on a new line */
+    margin-bottom: 5px; /* Space between label and input/select box */
+}
+
+input[type="date"],
+input[type="number"],
+input[type="text"],
+input[type="password"],
+input[type="select"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    display: block; /* Ensures the element takes up the full width of its container */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding and border do not affect the total width and height */
+    -webkit-appearance: none; /* Removes default Chrome/Safari styling */
+    -moz-appearance: none; /* Removes default Firefox styling */
+    appearance: none; /* Removes default styling for other browsers */
+    background-color: white;
+    font-family: inherit; /* Ensures the font is consistent with other inputs */
+    font-size: inherit; /* Ensures the font size is consistent with other inputs */
+}
+
+button {
+    width: 100%;
+    background-color: #2a9d8f;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #264653;
+}
+/* MAIN PAGE CSS */
+.carousel {
+    position: relative;
+    width: 100%;
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+.carousel-item {
+    position: relative;
+    width: 20vw; /* Set the width to a viewport-based size */
+    height: 20vw; /* Make height equal to width to create a square */
+    margin: 10px;
+    flex: 0 0 auto; /* Prevent items from shrinking or growing */
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%; /* Make image cover the whole item */
+    object-fit: cover; /* Ensure the image covers the area without distortion */
+}
+
+.overlay-text {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    color: #fff;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.main-text {
+    font-size: 1.5em; /* Larger font size for main text */
+    font-weight: bold;
+}
+
+.sub-text {
+    font-size: 0.8em; /* Smaller font size for subtext */
+    font-weight: normal;
+}
+
+/* MAIN PAGE CSS */
+
+/*  LOGIN/SIGNUP PAGE CSS */
+
+.login-container, .signup-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #d1dce2;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.alternative-action {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/*  LOGIN/SIGNUP PAGE CSS */
+
+.booking-container {
+    /* smt here for booking container */
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #b3ddd1;
+    border: 1px solid #80beaf;
+    border-radius: 4px;
+}
+
+.available-rooms-container{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f5b994;
+    border: 1px solid #ee9c6c;
+    border-radius: 4px;
+}
+
+.room-search-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #bde0fe;
+    border: 1px solid #a2d2ff;
+    border-radius: 4px;
+}
+
+/*  EMPLOYEE PAGE CSS */
+.search-bookings-container{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ffc8dd;
+    border: 1px solid #ffafcc;
+    border-radius: 4px;
+}
+
+.approve-booking-container{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ed7884;
+    border: 1px solid #f92a82;
+    border-radius: 4px;
+}
+
+.book-room-container{
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #d6d5b3;
+    border: 1px solid #7eb77f;
+    border-radius: 4px;
+}
+
+/* Custom checkbox styles */
+.checkbox-group {
+    display: flex;
+    justify-content: space-between; 
+}
+
+.checkbox-group > div {
+    flex: 1; 
+    text-align: center; 
+    padding: 0 10px; 
+}
+
+
+.form-group {
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.form-group label {
+    display: block; /* Labels are on their own line */
+    margin-bottom: 5px; /* Space below the label */
+}
+
+/*  EMPLOYEE PAGE CSS */
+
+/* manager page */
+.employee-container,
+.customer-container,
+.update-position-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #ff97af;
+    border: 1px solid #fa6989;
+    border-radius: 4px;
+
+}
