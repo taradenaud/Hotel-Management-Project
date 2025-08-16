@@ -1,8 +1,6 @@
-# CSI2132_GRP170_PROJECT
-
-Project repository for CSI 2132 W2024 term project
+# Hotel Database Simulation Project
 
 Team members: <br>
-Tara Denaud Joseph : 300318926 <br>
-Fay Lee : 300287876 <br>
-Richa Kewalramani : 300284124 <br>
+Tara Denaud Joseph <br>
+Fay Lee <br>
+Richa Kewalramani <br>
