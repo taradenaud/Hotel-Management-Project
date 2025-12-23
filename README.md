@@ -25,8 +25,8 @@ A web-based hotel chain management system for managing multiple hotels, rooms, e
 
 2. **Clone and Setup Database**
    ```bash
-   git clone <repo-url>
-   cd CSI2132_GRP170_PROJECT/databases1
+   git clone https://github.com/taradenaud/Hotel-Management-Project.git
+   cd Hotel-Management-Project/databases1
    ./setup-database.sh
    ```
 
