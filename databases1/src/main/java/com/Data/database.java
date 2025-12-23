@@ -1,15 +1,67 @@
 package com.Data;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Properties;
 
 public class database {
+    private static String DB_URL;
+    private static String DB_USERNAME;
+    private static String DB_PASSWORD;
+    private static String DB_DRIVER;
+
+    static {
+        loadDatabaseConfig();
+    }
+
+    private static void loadDatabaseConfig() {
+        Properties props = new Properties();
+        try (InputStream input = database.class.getClassLoader().getResourceAsStream("database.properties")) {
+            if (input == null) {
+                System.err.println("Unable to find database.properties");
+                setDefaults();
+                return;
+            }
+            props.load(input);
+            DB_URL = props.getProperty("db.url");
+            DB_DRIVER = props.getProperty("db.driver", "org.postgresql.Driver");
+            DB_USERNAME = props.getProperty("db.username");
+            DB_PASSWORD = props.getProperty("db.password");
+
+            // If username is empty, use system username
+            if (DB_USERNAME == null || DB_USERNAME.trim().isEmpty()) {
+                DB_USERNAME = System.getProperty("user.name");
+            }
+        } catch (IOException ex) {
+            System.err.println("Error loading database.properties: " + ex.getMessage());
+            setDefaults();
+        }
+    }
+
+    private static void setDefaults() {
+        DB_URL = "jdbc:postgresql://localhost:5432/Hotel Management";
+        DB_DRIVER = "org.postgresql.Driver";
+        DB_USERNAME = System.getProperty("user.name");
+        DB_PASSWORD = "richa123";
+    }
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName(DB_DRIVER);
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("PostgreSQL Driver not found", e);
+        }
+        return DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+    }
+
     public static void main(String[] var0){
     }
     public static void terminate(int employee_id) {
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             st.addBatch("DELETE FROM Employee WHERE employee_id = "+employee_id);
             st.executeBatch();
@@ -23,7 +75,7 @@ public class database {
 
     public static void removeCustomer(String ssn_sin){
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             st.addBatch("DELETE FROM Customer WHERE ssn_sin = '"+ssn_sin+"'");
             st.executeBatch();
@@ -37,7 +89,7 @@ public class database {
 
     public static void updateEmployee(String column, String input, int employee_id) {
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             st.addBatch("UPDATE Employee SET "+column+" = '"+input+"' WHERE employee_id = '"+employee_id+"'");
             st.executeBatch();
@@ -50,7 +102,7 @@ public class database {
 
     public static void updatePosition(int role_id, String position_title, int employee_id) {
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             st.execute("UPDATE works_as SET  role_id = '"+role_id+"' , position_title = '"+position_title+ "' WHERE employee_id = '"+employee_id+"'");
             st.close();
@@ -62,7 +114,7 @@ public class database {
 
     public static void updateCustomer(String column, int customer_id, String input){
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             st.execute("UPDATE Customer SET "+column+" = '"+input+"' WHERE customer_id = '"+customer_id+"'");
             st.close();
@@ -75,7 +127,7 @@ public class database {
     public static void addEmployee(String ssn_sin, String name, String address, int hotel_id, int role_id, String position_title){
 
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Employee WHERE ssn_sin = '"+ssn_sin+"'");
             rs.next();
@@ -99,7 +151,7 @@ public class database {
 
     public static void addCustomer(String ssn_sin, String name, String address){
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             ResultSet rs = st.executeQuery("SELECT ssn_sin FROM customer WHERE ssn_sin = '"+ssn_sin+"'");
             Date registration = new java.sql.Date(Calendar.getInstance().getTime().getTime());
@@ -122,7 +174,7 @@ public class database {
     public static ArrayList<String> searchBookings(int booking_id){
         ArrayList<String> info = new ArrayList<String>();
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM Booking WHERE booking_id ='"+booking_id+"')))");
             rs.next();
@@ -149,7 +201,7 @@ public class database {
 
     public static void approveBookings(int customer_id, String payment){
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             st.execute("UPDATE booking SET approved = 'true', payment = '"+payment+"' WHERE customer_id = '"+customer_id+"'");
             st.close();
@@ -164,7 +216,7 @@ public class database {
         String entry;
         int i = 0;
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             ResultSet rs = st.executeQuery("SELECT category,room_id,price,amenities,damages,hotel_id,address FROM Room CROSS JOIN Hotel WHERE room_id NOT in (SELECT room_id from Renting where (CAST('"+check_in_date+"' AS DATE) not between check_in_date AND check_out_date) AND (CAST('"+check_out_date+"' AS DATE) not between check_in_date AND check_out_date) AND room_id in (Select room_id from Room where sea_view = "+Sea_view+" and mountain_view = "+Mountain_view+" and extendable = "+Extendable+" and capacity = '"+RoomCapacity+"' and price <= "+Price+" and room_id in (select room_id from has where hotel_id in (select hotel_id from hotels where city = '"+city+"'))))");
             while (rs.next() && i < 15){
@@ -182,7 +234,7 @@ public class database {
 
     public static void bookRoom(int customer_id, int room_id, String check_in_date, String check_out_date){
         try {
-            Connection db = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Hotel%20Management", "postgres", "richa123");
+            Connection db = getConnection();
             Statement st = db.createStatement();
             String payment = "not specified";
             Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime());

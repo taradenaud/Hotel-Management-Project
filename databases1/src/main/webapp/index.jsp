@@ -10,9 +10,7 @@
 </head>
 <body>
 <%
-    String url = "jdbc:postgresql://localhost:5432/Hotel%20Management";
-    Class.forName("org.postgresql.Driver");
-    Connection db = DriverManager.getConnection(url, "postgres", "richa123");
+    Connection db = database.getConnection();
 %>
 <h1>Welcome to Our Hotel!</h1>
 
